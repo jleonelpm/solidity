@@ -24,5 +24,17 @@ contract MessageStore is Ownable { //se aplica la herencia con la palabra reserv
         return message;
     }
 
+    //Función que retorna el balance por defecto se devuelve en la unidad wei    
+    function getBalance() public view returns (uint){
+        return address(this).balance;
+    }
+
+    //Función que retorna el balance por defecto se devuelve en la unidad ether    
+    function getBalanceInEther() public view returns (uint){
+        return getBalance / 1e18; 
+    }
+
+
+
     
 }
