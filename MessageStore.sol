@@ -1,19 +1,13 @@
 pragma solidity ^0.4.24;
 
+import "./Ownable.sol"; //Importamos el contrato padre para heredar
+
 //Estuctura de un Smart Contract llamado MessageStore
-contract MessageStore {
+contract MessageStore is Ownable { //se aplica la herencia con la palabra reservada is
     
     //variables
-    address private owner; //variable tipo addres
     string private message; //variable tipo string
-    
-    //Constructor en modo publico
-    constructor() public {
         
-        owner = msg.sender;
-        
-    }
-    
     //Método público que recibe un argumento de tipo String
     function setMessage1(string newMessage) public isOwner { //Se aplicó elmodificador
         message = newMessage;
@@ -30,10 +24,5 @@ contract MessageStore {
         return message;
     }
 
-    //Creación de un modifier para asegurarnos que solo el propietario puede ejecutar una función
-    modifier isOwner() { 
-        require(owner == msg.sender);
-        _;
-    }
     
 }
