@@ -2,7 +2,10 @@ pragma solidity ^0.4.24
 
 //Smart Contract Padre
 contract Ownable {
-    address private owner; //variable de tipo address
+
+    //variable de tipo address.
+    // Se cambio la visibilidad private a internal (protected en otros lenguajes)
+    address internal owner; 
 
     constructor() {
         owner = msg.sender;

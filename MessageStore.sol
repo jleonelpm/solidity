@@ -14,6 +14,7 @@ contract MessageStore is Ownable { //se aplica la herencia con la palabra reserv
     }
 
     //Método público que recibe un argumento de tipo String
+    //Para ejecutar este método de manera obligatoria hay que realizar un pagto de 3 ether
     function setMessage2(string newMessage) public payable { //Se aplicó payable
         require(msg.value == 3 ether); // se deberá ejecutar solamente el valor pagado en ether es 3
         message = newMessage;
@@ -34,7 +35,11 @@ contract MessageStore is Ownable { //se aplica la herencia con la palabra reserv
         return getBalance / 1e18; 
     }
 
-
+    //Función para realizar una transferencia 
+    function transfer(uint amount) public isOwner {
+        require(addres(this).balance >= amount);  
+        owner.transfer(amount);
+    }
 
     
 }
