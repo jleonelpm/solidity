@@ -35,10 +35,16 @@ contract MessageStore is Ownable { //se aplica la herencia con la palabra reserv
         return getBalance / 1e18; 
     }
 
-    //Función para realizar una transferencia 
+    //Función para realizar una transferencia del balance a la cuenta del owner
     function transfer(uint amount) public isOwner {
         require(addres(this).balance >= amount);  
         owner.transfer(amount);
+    }
+
+    function transferTo(uint amount, address to) public isOwner {
+        require(addres(this).balance >= amount);  
+        requiere(to != address(0)); //La dirección introducida debe ser válida para ethereum
+        to.transfer(amount); //Realizamos la transferencia a la dirección indicada
     }
 
     
